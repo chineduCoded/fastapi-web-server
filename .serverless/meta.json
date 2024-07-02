@@ -1,0 +1,65 @@
+{
+  "/home/chinedu/fastapi-web-server": {
+    "versionSfCore": null,
+    "versionFramework": "4.1.10",
+    "isWithinCompose": false,
+    "isCompose": false,
+    "composeOrgName": null,
+    "composeServiceName": null,
+    "servicePath": "/home/chinedu/fastapi-web-server",
+    "serviceConfigFileName": "serverless.yml",
+    "service": {
+      "service": "fastapi-web-server",
+      "provider": {
+        "name": "aws",
+        "runtime": "python3.12",
+        "region": "us-east-1"
+      },
+      "functions": {
+        "app": {
+          "handler": "app.main.handler",
+          "events": [
+            {
+              "http": {
+                "path": "/",
+                "method": "get"
+              }
+            },
+            {
+              "http": {
+                "path": "/api/hello",
+                "method": "get"
+              }
+            }
+          ]
+        }
+      },
+      "package": {
+        "patterns": [
+          "!**/*",
+          "app/**"
+        ]
+      },
+      "custom": {
+        "pythonRequirements": {
+          "dockerizePip": true
+        }
+      }
+    },
+    "serviceRawFile": "# serverless.yml\n\nservice: fastapi-web-server\n\nprovider:\n  name: aws\n  runtime: python3.12\n  region: us-east-1\n\nfunctions:\n  app:\n    handler: app.main.handler\n    events:\n      - http:\n          path: /\n          method: get\n      - http:\n          path: /api/hello\n          method: get\n\npackage:\n  patterns:\n    - \"!**/*\"\n    - \"app/**\"\n\ncustom:\n  pythonRequirements:\n    dockerizePip: true\n",
+    "command": [
+      "plugin",
+      "install"
+    ],
+    "options": {
+      "name": "serverless-python-requirements"
+    },
+    "error": null,
+    "machineId": "fe6be0a8ece8df0772097b7fa1430aab",
+    "serviceProviderAwsCfStackId": null,
+    "serviceProviderAwsCfStackCreated": null,
+    "serviceProviderAwsCfStackUpdated": null,
+    "serviceProviderAwsCfStackStatus": null,
+    "serviceProviderAwsCfStackOutputs": null
+  }
+}

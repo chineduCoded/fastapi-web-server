@@ -1,0 +1,31 @@
+# serverless.yml
+
+service: fastapi-web-server
+
+provider:
+  name: aws
+  runtime: python3.12
+  region: us-east-1
+
+functions:
+  app:
+    handler: app.main.handler
+    events:
+      - http:
+          path: /
+          method: get
+      - http:
+          path: /api/hello
+          method: get
+
+package:
+  patterns:
+    - "!**/*"
+    - "app/**"
+
+custom:
+  pythonRequirements:
+    dockerizePip: true
+
+plugins:
+  - serverless-python-requirements
