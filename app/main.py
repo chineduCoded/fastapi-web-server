@@ -2,7 +2,6 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from app.utils.location_temperature import get_location_and_temperature
-from mangum import Mangum
 
 
 app = FastAPI()
@@ -39,7 +38,3 @@ async def greetings(request: Request, visitor_name: str = "Guest"):
         "location": city,
         "greeting": greeting
     })
-
-
-# Mangum handler for AWS Lambda
-handler = Mangum(app)
