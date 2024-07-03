@@ -17,7 +17,7 @@ def get_location_and_temperature(client_ip: str):
         response.raise_for_status() 
         data = response.json()
         
-        city = data.get("city", "Unknown")
+        city = data.get("region_name", "Unknown")
         latitude = data.get("latitude")
         longitude = data.get("longitude")
 
