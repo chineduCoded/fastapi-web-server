@@ -14,12 +14,15 @@ def get_location_and_temperature(client_ip: str):
     try:
         ipstack_url = f"http://api.ipstack.com/{client_ip}?access_key={settings.ipstack_api_key}"
         response = requests.get(ipstack_url)
-        response.raise_for_status() 
+        response.raise_for_status()
         data = response.json()
         
-        city = data.get("region_name", "Unknown")
-        latitude = data.get("latitude")
-        longitude = data.get("longitude")
+        # city = data.get("region_name", "Unknown")
+        city = data["region_name"]
+        # latitude = data.get("latitude")
+        latitude = data["latitude"]
+        # longitude = data.get("longitude")
+        longitude = data["longitude"]
 
         if latitude and longitude:
             openweathermap_url = (
@@ -28,7 +31,8 @@ def get_location_and_temperature(client_ip: str):
             response = requests.get(openweathermap_url)
             response.raise_for_status()
             data = response.json()
-            temperature = data.get("main", {}).get("temp", "Unknown")
+            # temperature = data.get("main", {}).get("temp", "Unknown")
+            temperature = data["main"]["temp"]
         else:
             temperature = "Unknown"
         
