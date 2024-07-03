@@ -39,10 +39,3 @@ async def greetings(request: Request, visitor_name: str = "Guest"):
         "location": city,
         "greeting": greeting
     })
-
-@app.get("/api/ipstack", status_code=200)
-async def read_ipstack(client_ip: str = "105.113.81.28"):
-
-    response = ip_stack(client_ip)
-
-    return {"IP Stack data": response}
