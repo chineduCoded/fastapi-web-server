@@ -2,7 +2,6 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from app.utils.location_temperature import get_location_and_temperature
-from app.ipstack import ip_stack
 
 
 app = FastAPI()
