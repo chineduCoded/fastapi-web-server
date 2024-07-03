@@ -7,8 +7,5 @@ class Settings(BaseSettings):
     ipstack_api_key: str
     openweathermap_api_key: str
 
-    account_id: int
-    license_key: str
-
 
 settings = Settings()
