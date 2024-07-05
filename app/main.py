@@ -1,3 +1,4 @@
+import requests
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
@@ -25,11 +26,8 @@ async def read_root():
 @app.get("/api/hello", status_code=200)
 async def greetings(request: Request, visitor_name: str = "Guest"):
     """Greeting visitors"""
-    client_ip = request.client.host
+    client_ip = requests.get("https://httpbin.org/ip").json()['origin']
 
-    if client_ip == "127.0.0.1":
-        # A fallback IP address for testing locally. Example: Google Public DNS IP address
-        client_ip = "8.8.8.8"
     city, temperature = get_location_and_temperature(client_ip)
     greeting = f"Hello, {visitor_name}!, the temperature is {temperature} degrees Celsius in {city}"
 
